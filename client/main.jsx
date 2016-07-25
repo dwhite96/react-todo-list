@@ -1,5 +1,5 @@
-// require('./assets/app.css');
-// require('./assets/menu.css');
+require('./assets/app.css');
+require('./assets/menu.css');
 // require('./assets/blabs.css');
 
 var React = require('react');
