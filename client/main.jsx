@@ -1,8 +1,9 @@
 require('./assets/app.css');
 require('./assets/menu.css');
-// require('./assets/blabs.css');
+require('./assets/todos.css');
 
 var React = require('react');
+var ReactDOM = require('react-dom')
 var App = require('./components/layout/App.jsx');
 
-React.render(<App/>, document.body);
+ReactDOM.render(<App/>, document.body);

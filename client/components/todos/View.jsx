@@ -3,10 +3,15 @@ var TodosList = require('./List.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return {data: []};
+    return {data: {data: []}};
   },
   componentDidMount: function() {
-    this.setState({data: [{id: 2, content: 'and another fake todo'}, {id: 1, content: 'this is a fake todo'}]});
+    this.readTodosFromAPI();
+  },
+  readTodosFromAPI: function() {
+    this.props.readFromAPI(this.props.origin + '/todos', function(todos) {
+      this.setState({data: todos});
+    }.bind(this));
   },
   render: function() {
     return (
