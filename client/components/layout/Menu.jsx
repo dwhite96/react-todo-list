@@ -4,7 +4,17 @@ var Link = ReactRouter.Link;
 var IndexLink = ReactRouter.IndexLink;
 
 module.exports = React.createClass({
+  handleSignOutLink: function() {
+    sessionStorage.setItem('jwt','');
+    location = '/';
+  },
   render: function() {
+    if (this.props.signedIn) {
+      var signingLink = <li><span onClick={this.handleSignOutLink}>Sign Out</span></li>;
+    } else {
+      var signingLink = <li><a href={this.props.origin + '/request_token'}>Sign In</a></li>;
+    }
+
     return (
       <div id="menu">
         <span id="menu-link" onClick={this.props.sendMenuClick}><span></span></span>
@@ -14,6 +24,7 @@ module.exports = React.createClass({
             <ul>
               <li><IndexLink to={"/"}>Todos</IndexLink></li>
               <li><Link to={"about"}>About</Link></li>
+              {signingLink}
             </ul>
           </div>
         </div>
