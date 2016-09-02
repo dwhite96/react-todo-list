@@ -4,9 +4,8 @@ module.exports = React.createClass({
   render: function() {
     return (
       <li className="todo">
-        <span className="todo-text">
-          {this.props.content}
-        </span>
+        <span className="todo-author">{this.props.author}: </span>
+        <span className="todo-text">{this.props.content}</span>
       </li>
     );
   }

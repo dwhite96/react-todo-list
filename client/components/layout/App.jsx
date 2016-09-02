@@ -38,6 +38,21 @@ module.exports = React.createClass({
       }
     });
   },
+  writeToAPI: function(method, url, data, successFunction) {
+    Reqwest({
+      url: url,
+      data: data,
+      type: 'json',
+      method: method,
+      contentType: 'application/json',
+      headers: {'Authorization': sessionStorage.getItem('jwt')},
+      success: successFunction,
+      error: function(error) {
+        console.error(url, error['response']);
+        location = '/';
+      }
+    });
+  },
   handleMenuClick: function() {
     this.setState({showMenu: !this.state.showMenu});
   },
@@ -48,7 +63,7 @@ module.exports = React.createClass({
       <div id="app" className={menu}>
         <Menu origin={this.props.origin} sendMenuClick={this.handleMenuClick} signedIn={this.state.signedIn} />
         <div id="content">
-          {this.props.children && React.cloneElement(this.props.children, {origin: this.props.origin, readFromAPI: this.readFromAPI, signedIn: this.state.signedIn})}
+          {this.props.children && React.cloneElement(this.props.children, {origin: this.props.origin, readFromAPI: this.readFromAPI, writeToAPI: this.writeToAPI, currentUser: this.state.currentUser, signedIn: this.state.signedIn})}
         </div>
       </div>
     );

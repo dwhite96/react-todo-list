@@ -5,7 +5,7 @@ module.exports = React.createClass({
   render: function() {
     var todos = this.props.data.data.map(function(todo) {
       return (
-        <Todo key={todo.id} content={todo.attributes.title} />
+        <Todo key={todo.id} content={todo.attributes.title} author={todo.relationships.user.data} />
       )
     });
 
